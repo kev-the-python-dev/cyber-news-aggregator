@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 import requests
 from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup as beautsoup # Scrapy is better for this, as we can crawl multiple sites
@@ -15,20 +16,25 @@ def article_scrape(request): # This is specifically for TheHackerNews.com.
     news = soup.find_all('div', {"class":"body-post"})
 
     # Main Execution for collecting each selector information, converting it into str format, and saving it into Django's SQLite3 DB.
-    for news_item in news:
-        main = news_item.find_all('a')[0]
-        link = main['href']
-        img_src = str(main.find('img')['data-src'])
-        title_main = news_item.find('h2')
-        title = str(title_main.text)
+    try:   
+        for news_item in news:
+            main = news_item.find_all('a')[0]
+            link = main['href']
+            img_src = str(main.find('img')['data-src'])
+            title_main = news_item.find('h2')
+            title = str(title_main.text)
 
-        new_headline = Headline()
-        new_headline.title = title
-        new_headline.url = link
-        new_headline.image = img_src
-        new_headline.save()
-    
-    return redirect('../')
+            new_headline = Headline()
+            new_headline.title = title
+            new_headline.url = link
+            new_headline.image = img_src
+            new_headline.save()
+        
+    except IntegrityError:
+        print('Duplicate objects found. Ommitting and moving forward.')
+        pass
+    finally:   
+        return redirect('../')
 
 # Required for displaying each "news item" as a list in our home.html template file found in ../../templates/news/home.html
 def list_news(request):
