@@ -82,7 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://raw.githubusercontent.com/kev-the-python-dev/cyber-news-aggregator/main/techNewsAggregatorPreview.png">
+<img src="https://raw.githubusercontent.com/kev-the-python-dev/cyber-news-aggregator/main/DemoPreview.png">
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -178,4 +178,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [license-url]: https://github.com/kev-the-python-dev/cyber-news-aggregator/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/kev-the-python-dev
-[product-screenshot]: https://raw.githubusercontent.com/kev-the-python-dev/cyber-news-aggregator/main/techNewsAggregatorPreview.png
+[product-screenshot]: https://raw.githubusercontent.com/kev-the-python-dev/cyber-news-aggregator/main/DemoPreview.png
