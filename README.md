@@ -82,7 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://github.com/kev-the-python-dev/cyber-news-aggregator/blob/main/techNewsAggregatorPreview.png">
+<img src="https://raw.githubusercontent.com/kev-the-python-dev/cyber-news-aggregator/main/techNewsAggregatorPreview.png">
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
