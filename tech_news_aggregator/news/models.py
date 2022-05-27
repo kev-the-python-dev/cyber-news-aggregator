@@ -3,6 +3,7 @@ from django.db import IntegrityError, models
 class Headline(models.Model):
     title = models.CharField(max_length=120)
     image = models.URLField(null=True, blank=True)
+    date = models.TextField(null=True)
     url = models.TextField()
 
     def __str__(self):
@@ -10,4 +11,4 @@ class Headline(models.Model):
 
     # Ensure 
     class Meta:
-        unique_together = ['title', 'image', 'url']
+        unique_together = ['title', 'image', 'date','url']

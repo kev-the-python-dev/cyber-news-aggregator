@@ -11,9 +11,9 @@ def article_scrape(request): # This is specifically for TheHackerNews.com.
     url = "https://www.thehackernews.com" # If you change this, you'll need to re-do all the selectors BeautifulSoup parses.
 
     # Establishing the response, creating the HTML parser (since identifying html selectors in BS4), and assigning all the "news boxes" from THN to var news.
-    content = session.get(url, verify=False).content 
-    soup = beautsoup(content, "html.parser")
-    news = soup.find_all('div', {"class":"body-post"})
+    content = session.get(url, verify=True).content 
+    soup = beautsoup(content, 'html.parser')
+    news = soup.find_all('div', {'class':'body-post'})
 
     # Main Execution for collecting each selector information, converting it into str format, and saving it into Django's SQLite3 DB.
     try:   
@@ -23,13 +23,17 @@ def article_scrape(request): # This is specifically for TheHackerNews.com.
             img_src = str(main.find('img')['data-src'])
             title_main = news_item.find('h2')
             title = str(title_main.text)
+            find_date = news_item.find('div', {'class':'item-label'})
+            item_date = str(find_date.text[1:-18]).strip('') # Strip the author's name and unnessary Unicode chars - just provide date
+            print(f'date is {item_date}')
 
             new_headline = Headline()
             new_headline.title = title
             new_headline.url = link
             new_headline.image = img_src
+            new_headline.date = item_date
             new_headline.save()
-        
+
     except IntegrityError:
         print('Duplicate objects found. Ommitting and moving forward.')
         pass
