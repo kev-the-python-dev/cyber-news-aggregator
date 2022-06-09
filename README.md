@@ -92,6 +92,7 @@
 ### Built With
 
 * [Python](https://www.python.org/)
+* [Django](https://www.djangoproject.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -121,8 +122,8 @@ pip install -r requirements.txt
 cd tech_news_aggregator
 python3 manage.py runserver
 ```
-Visit 127.0.0.1:/8000
-Click the "Fetch News/Content" button
+Visit 127.0.0.1:/8000 <br></br>
+Click the "Fetch News/Content" button <br></br>
 Enjoy!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
