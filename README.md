@@ -118,7 +118,12 @@ pip install -r requirements.txt
 <!-- USAGE EXAMPLES -->
 ## Usage
 ```sh
+cd tech_news_aggregator
+python3 manage.py runserver
 ```
+Visit 127.0.0.1:/8000
+Click the "Fetch News/Content" button
+Enjoy!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
