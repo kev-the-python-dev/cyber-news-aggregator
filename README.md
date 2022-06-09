@@ -82,8 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://raw.githubusercontent.com/kev-the-python-dev/cyber-news-aggregator/main/DemoPreview.png">
-
+Downloads posts from TheHackerNews, parses them into a single Django view. Saves time and "bookmark" space. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
