@@ -1,0 +1,2 @@
+web: gunicorn tech_news_aggregator.wsgi:application --log-file -
+

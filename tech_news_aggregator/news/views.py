@@ -16,7 +16,7 @@ def article_scrape(request): # This is specifically for TheHackerNews.com.
     news = soup.find_all('div', {'class':'body-post'})
 
     # Main Execution for collecting each selector information, converting it into str format, and saving it into Django's SQLite3 DB.
-    try:   
+    try:   # for THN only
         for news_item in news:
             main = news_item.find_all('a')[0]
             link = main['href']
@@ -25,24 +25,26 @@ def article_scrape(request): # This is specifically for TheHackerNews.com.
             title = str(title_main.text)
             find_date = news_item.find('div', {'class':'item-label'})
             item_date = str(find_date.text[1:-18]).strip('') # Strip the author's name and unnessary Unicode chars - just provide date
-            print(f'date is {item_date}')
 
             new_headline = Headline()
             new_headline.title = title
             new_headline.url = link
             new_headline.image = img_src
             new_headline.date = item_date
-            new_headline.save()
+
+            try:
+                new_headline.save()
+            except Exception as e:
+                print(e)
 
     except IntegrityError:
         print('Duplicate objects found. Ommitting and moving forward.')
-        pass
     finally:   
         return redirect('../')
 
 # Required for displaying each "news item" as a list in our home.html template file found in ../../templates/news/home.html
 def list_news(request):
-    headlines = Headline.objects.all()[::1]
+    headlines = Headline.objects.all()[:6:1]
     context = {
         "object_list" : headlines
     }
