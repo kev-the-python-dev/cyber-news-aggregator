@@ -46,11 +46,11 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#thn" class="nav-link scrollto active"><span>The Hacker News</span></a></li> 
-          <li><a href="#" class="nav-link scrollto "><span>/r/Python (Coming Soon)</span></a></li> 
-          <li><a href="#" class="nav-link scrollto "><span>RealPython.com (Coming Soon)</span></a></li> 
-          <li><a href="#" class="nav-link scrollto "><span>Geek for Geeks (Coming Soon)</span></a></li> 
-          <li><a href="#" class="nav-link scrollto "><span>YCombinator News (Coming Soon)</span></a></li>
+          <li><a href="#thn" class="nav-link"><span>The Hacker News</span></a></li> 
+          <li><a href="#reddit" class="nav-link"><span>/r/Python</span></a></li> 
+          <li><a href="#" class="nav-link"><span>RealPython.com (Coming Soon)</span></a></li> 
+          <li><a href="#" class="nav-link"><span>Geek for Geeks (Coming Soon)</span></a></li> 
+          <li><a href="#" class="nav-link"><span>YCombinator News (Coming Soon)</span></a></li>
         </ul>
       </nav>
       <!-- .nav-menu -->
@@ -62,19 +62,20 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
         <h1>Tech News Aggregator</h1>
-        <a href="{% url 'scrape' %}" class="btn btn-success" style="margin-top:2em;">Pull Daily News</a> 
-  </section><!-- End Hero -->
+        <a href="{% url 'scrape' %}" class="btn btn-success" style="margin-top:2em;">Pull THN News</a> 
+        <a href="{% url 'scrape_reddit' %}" class="btn btn-success" style="margin-top:2em;">Pull Reddit News</a> 
+      </section><!-- End Hero -->
 
   <main id="main">
     
     <!-- ======= News Pull Section ======= -->
     <section id="portfolio" class="portfolio section-bg">
       <div class="container">
-        <div class="row" id='thn' data-aos="fade-up">
+        <div class="row" data-aos="fade-up">
           <h2>The Hacker News</h2>
           {% for object in object_list %}
           {% if forloop.counter0|divisibleby:3 %} 
-          <div class="row">
+          <div class="row" id="thn">
             {%  endif %}
           <div class="card" style="width: 18rem; border:3px black solid; margin-left: 10px; margin-bottom: 10px;">
           <img class="card-img-top" src="{{ object.image }}" style="padding: 10px;">
@@ -87,7 +88,25 @@
             {% endfor %}
           </div>  
         </div>
+        
         <!-- Start Row-->
+        <div class="row" data-aos="fade-up">
+          <h2>Reddit.com/r/Python News</h2>
+          {% for object in reddit_list %}
+          {% if forloop.counter0|divisibleby:3 %} 
+          <div class="row" id="reddit">
+            {%  endif %}
+          <div class="card" style="width: 18rem; border:3px black solid; margin-left: 10px; margin-bottom: 10px;">
+          <img class="card-img-top" src="{{ object.image }}" style="padding: 10px;">
+          <div class="card-body">
+              <h5 class="card-title"><div class="card-body">
+                  <a href="{{ object.url }}"><h5 class="card-title">{{object.title}} </h5></a>
+              </div></h5><p>{{ object.date }}</p>
+          </div>
+          </div>
+            {% endfor %}
+          </div>  
+        </div>
         <!-- End Row-->
       </div>
 
